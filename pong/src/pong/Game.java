@@ -23,22 +23,20 @@ public class Game extends Canvas implements Runnable,KeyListener{
 	
 	public static Player player;
 	public static Enemy enemy;
-	public static Ball ball,ball2;
+	public static Ball ball;
 	
 	public Game() {
 		this.setPreferredSize(new Dimension(WIDTH*SCALE,HEIGHT*SCALE));
 		this.addKeyListener(this);
 				
 		if(ball==null) { 
-			ball = new Ball(100,HEIGHT/2 - 1);
-			ball2 = new Ball(100,HEIGHT/2 - 1);
+			ball = new Ball(100,HEIGHT/2 - 1);		
 		}
 		else {
 			double velocidadeBola =ball.speed;
-			ball = new Ball(100,HEIGHT/2 - 1,velocidadeBola);
-			ball2 = new Ball(100,HEIGHT/2 - 1,velocidadeBola);
+			ball = new Ball(100,HEIGHT/2 - 1,velocidadeBola);			
 		}
-		player = new Player(100,HEIGHT-5,ball,ball2);
+		player = new Player(100,HEIGHT-5,ball);
 		enemy = new Enemy(100,0);
 	}
 
@@ -59,8 +57,6 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		player.tick();
 		enemy.tick();
 		ball.tick();		
-		ball2.tick();
-		
 	}
 	
 	public void render() {
@@ -76,7 +72,6 @@ public class Game extends Canvas implements Runnable,KeyListener{
 		player.render(g);
 		enemy.render(g);
 		ball.render(g);
-		ball2.render(g);
 		
 		g = bs.getDrawGraphics();
 		g.drawImage(layer, 0, 0, WIDTH*SCALE,HEIGHT*SCALE,null);
@@ -123,12 +118,10 @@ public class Game extends Canvas implements Runnable,KeyListener{
 			switch (resultado) {
 				case 0:
 					ball.speed = ball.speed+ball.speed/2 ;
-					ball2.speed = ball.speed+ball.speed/2 ;
 					System.out.println(ball.speed);
 					break;
 				case 1:
-					ball.speed = ball.speed/2 ;
-					ball2.speed = ball.speed/2 ;
+					ball.speed = ball.speed/2 ;					
 				default:
 					break;
 			}			

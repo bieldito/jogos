@@ -12,21 +12,19 @@ public class Player {
 	
 	public int width,height;
 	
-	public Ball ball,ball2;
+	public Ball ball;
 	
-	public Player(int x, int y, Ball ball, Ball ball2) {
+	public Player(int x, int y, Ball ball) {
 		this.x = x;
 		this.y = y;
 		this.width = 40;
 		this.height = 5;
-		this.ball = ball;
-		this.ball2 = ball2;
+		this.ball = ball;		
 	}
 	
 	public void tick(){
 		if( (right || left) && ball.speed==0) {
-			ball.speed = ball.speedInicio;
-			ball2.speed = ball.speedInicio/2;
+			ball.speed = ball.speedInicio;			
 		}
 				
 		if(right)
